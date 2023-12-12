@@ -70,20 +70,21 @@ Tier_1_fun <- function(C_total , C_EEZ, Run, Esc, Esc_goal, years, F_EEZ, MFMT, 
     F_EEZ_preseason <- max((sum(base_table$C_EEZ[(nrow(base_table)-gen_lag+2):nrow(base_table)]) + Potential_Yield_EEZ_preseason)/
       (sum(base_table$Run[(nrow(base_table)-gen_lag+2):nrow(base_table)]) + run_preseason), 0)
     
-    #Calculate ACL (preseason)
+    #Calculate ACL (preseason) --> generation-time level calculation
     ACL_preseason <- max(Potential_Yield_EEZ_preseason + sum(base_table$Potential_Yield_EEZ[(nrow(base_table)-gen_lag+2):nrow(base_table)]), 0)
     ACL_preseason_no_buff <- ACL_preseason
     ACL_preseason <- ACL_preseason*ACL_buffer
     
-    #Calculate OFL (preseason)
-    OFL_preseason <- max(ACL_preseason - sum(base_table$C_EEZ[(nrow(base_table)-gen_lag+2):nrow(base_table)]), 0)
+    #Calculate OFL (preseason) and single season ACL value (OFL without buffer)
+    ACL_preseason_single <- max(ACL_preseason - sum(base_table$C_EEZ[(nrow(base_table)-gen_lag+2):nrow(base_table)]), 0)
+    OFL_preseason <- max(ACL_preseason_no_buff - sum(base_table$C_EEZ[(nrow(base_table)-gen_lag+2):nrow(base_table)]), 0)
     
     MFMT_preseason <- max((sum(base_table$Potential_Yield_EEZ[(nrow(base_table)-gen_lag+2):nrow(base_table)]) + Potential_Yield_EEZ_preseason)/
       (sum(base_table$Run[(nrow(base_table)-gen_lag+2):nrow(base_table)]) + run_preseason), 0)
     
     #Compile preseason quantities 
-    Preseason_table <- cbind(F_state_preseason, run_preseason, Potential_Yield_preseason, Potential_Yield_EEZ_preseason, F_EEZ_preseason, ACL_preseason, ACL_preseason_no_buff, OFL_preseason, MFMT_preseason)
-    colnames(Preseason_table) <-c('F_state_preseason', 'run_preseason', 'Potential_Yield', 'Potential_Yield_EEZ', 'F_EEZ', 'ACL', 'ACL_no_buffer', 'OFL', 'MFMT')
+    Preseason_table <- cbind(F_state_preseason, run_preseason, Potential_Yield_preseason, Potential_Yield_EEZ_preseason, F_EEZ_preseason, ACL_preseason, ACL_preseason_no_buff, ACL_preseason_single, OFL_preseason, MFMT_preseason)
+    colnames(Preseason_table) <-c('F_state_preseason', 'run_preseason', 'Potential_Yield', 'Potential_Yield_EEZ', 'F_EEZ', 'ACL', 'ACL_no_buff','ACL_single', 'OFL', 'MFMT')
     
     #Write to .csv
     if(write==TRUE){

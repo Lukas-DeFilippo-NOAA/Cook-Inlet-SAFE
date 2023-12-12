@@ -1,0 +1,27 @@
+{
+    "id": "BC48407B",
+    "path": "~/Desktop/NOAA/Cook Inlet SAFE/Cook_Inlet/Cook_Inlet_functions.R",
+    "project_path": "Cook_Inlet_functions.R",
+    "type": "r_source",
+    "hash": "3921582233",
+    "contents": "",
+    "dirty": false,
+    "created": 1700682149383.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "441,0",
+        "scrollLine": "0"
+    },
+    "folds": "6|128|302|0|\n157|23|292|2|\n347|77|440|0|\n",
+    "lastKnownWriteTime": 1701726439,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1702394557064,
+    "read_only": false,
+    "read_only_alternatives": []
+}
